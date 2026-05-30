@@ -1,0 +1,21 @@
+.container {
+  background-color: rgb(255, 255, 255);
+  width: 25rem;
+  padding: 1.25rem;
+  border-radius: 5px;
+  margin-bottom: 40px;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: "lato";
+  background-image: url(../../assets/image/back-ground.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding-top: 10vh;
+}

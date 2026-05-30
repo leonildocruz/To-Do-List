@@ -1,0 +1,19 @@
+@import url(../../assets/fonts/fonts.css);
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+:root {
+  --color-backgroud: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 50%, #8e44ad 100%);
+  --color-background2: #eee;
+  --color-gray: #454545ee;
+  --color-gray2: #c8c7c7;
+  --color-gray3: #747474;
+  --color-blue: rgb(79, 151, 251);
+  --color-blue2: rgb(112, 172, 255);
+}
