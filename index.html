@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/style.css" />
+    <link rel="shortcut icon" href="./assets/icons/favicon.png" type="image/x-icon" />
+    <title>Todo List</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Minhas Tarefas</h1>
+      </header>
+
+      <div class="add-tarefa">
+        <span>Adicione sua tarefa:</span>
+        <input type="text" placeholder="Digite uma tarefa" id="tarefa" />
+        <button id="btn-adicionar">Adicionar</button>
+      </div>
+
+      <div class="editar">
+        <span>Edite sua tarefa:</span>
+        <input type="text" id="editar" />
+        <button id="btn-edit">Editar</button>
+        <button id="btn-cancelar-edit">Cancelar</button>
+      </div>
+
+      <div class="search-filter">
+        <div class="pesquisar-tarefa">
+          <input type="text" placeholder="Buscar" id="pesquisar" />
+          <button id="btn-pesquisar">🔎</button>
+        </div>
+
+        <div class="filtrar">
+          <span>Filtrar:</span>
+          <select id="filter-select">
+            <option value="all">Todos</option>
+            <option value="done">Concluidos</option>
+            <option value="todo">Pendentes</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="todo-list">
+        <span>Suas Tarefas:</span>
+        <ul id="list"></ul>
+        <ul id="list">
+          <li>
+            <p>teste</p>
+            <div class="btn-tarefas">
+              <span class="btn-check" data-index="${index}">✅</span>
+              <span class="btn-edit" data-index="${index}">✏️</span>
+              <span class="btn-remover" data-index="${index}">❌</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="module" src="./src/js/script.js"></script>
+  </body>
+</html>
