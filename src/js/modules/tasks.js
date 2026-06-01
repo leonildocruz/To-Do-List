@@ -1,7 +1,7 @@
 // src/js/modules/tasks.js
 export function adicionarNoArray(tarefas, novoTexto) {
   // Retorna um novo array contendo todos os itens antigos + o novo texto
-  return [...tarefas, novoTexto]
+  return [novoTexto, ...tarefas]
 }
 
 export function removerDoArray(tarefas, indexAlvo) {

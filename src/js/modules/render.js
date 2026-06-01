@@ -7,11 +7,11 @@ export function renderizarNaTela(elementoUl, listaDeTarefas) {
 
     // Injeta o texto e guarda o index no atributo data-index
     li.innerHTML = `
-            <p>${tarefa}</p>
+            <span>${tarefa}</span>
             <div class="btn-tarefas">
-              <span class="btn-check" data-index="${index}">✅</span>
-              <span class="btn-edit" data-index="${index}">✏️</span>
-              <span class="btn-remover" data-index="${index}">❌</span>
+              <button class="btn-check btn-lista" data-index="${index}">✅</button>
+              <button class="btn-edit btn-lista" data-index="${index}">✏️</button>
+              <button class="btn-remover btn-lista" data-index="${index}">❌</button>
             </div>
         `
 

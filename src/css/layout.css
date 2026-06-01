@@ -1,21 +1,40 @@
-.container {
-  background-color: rgb(255, 255, 255);
-  width: 25rem;
-  padding: 1.25rem;
-  border-radius: 5px;
-  margin-bottom: 40px;
-}
-
 body {
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   font-family: "lato";
-  background-image: url(../../assets/image/back-ground.jpg);
+  background-image: url(../../../assets/image/back-ground.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   padding-top: 10vh;
+}
+
+.container {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  max-width: 25rem;
+  padding: 1.25rem;
+  border-radius: 5px;
+  margin-bottom: 40px;
+}
+
+.page-titulo {
+  color: var(--color-gray);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.container header,
+.tarefa {
+  border-bottom: 1px solid #accc;
+  margin-bottom: 1rem;
+  padding-bottom: 10px;
+}
+
+.input-label {
+  font-weight: 600;
+  color: var(--color-gray);
 }

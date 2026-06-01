@@ -10,30 +10,34 @@
   <body>
     <div class="container">
       <header>
-        <h1>Minhas Tarefas</h1>
+        <h1 class="page-titulo">Minhas Tarefas</h1>
       </header>
 
-      <div class="add-tarefa">
-        <span>Adicione sua tarefa:</span>
-        <input type="text" placeholder="Digite uma tarefa" id="tarefa" />
-        <button id="btn-adicionar">Adicionar</button>
-      </div>
-
-      <div class="editar">
-        <span>Edite sua tarefa:</span>
-        <input type="text" id="editar" />
-        <button id="btn-edit">Editar</button>
-        <button id="btn-cancelar-edit">Cancelar</button>
-      </div>
-
-      <div class="search-filter">
-        <div class="pesquisar-tarefa">
-          <input type="text" placeholder="Buscar" id="pesquisar" />
-          <button id="btn-pesquisar">🔎</button>
+      <div class="tarefa">
+        <div>
+          <span class="input-label">Adicione sua tarefa:</span>
+          <input type="text" placeholder="Digite uma tarefa" class="input-tarefa" id="tarefa" />
+          <button class="button" id="btn-adicionar">Adicionar</button>
         </div>
 
-        <div class="filtrar">
-          <span>Filtrar:</span>
+        <div>
+          <span class="input-label">Edite sua tarefa:</span>
+          <div>
+            <input type="text" class="input-editar" id="editar" />
+            <button class="button" id="btn-edit">Editar</button>
+            <button class="button" id="btn-cancelar-edit">Cancelar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tarefa">
+        <div>
+          <input type="text" placeholder="Buscar" class="input-tarefa" id="pesquisar" />
+          <button class="button" id="btn-pesquisar">Buscar</button>
+        </div>
+
+        <div>
+          <span class="input-label">Filtrar:</span>
           <select id="filter-select">
             <option value="all">Todos</option>
             <option value="done">Concluidos</option>
@@ -42,19 +46,9 @@
         </div>
       </div>
 
-      <div id="todo-list">
-        <span>Suas Tarefas:</span>
+      <div id="todo-list" class="lista">
+        <span class="input-label">Suas Tarefas:</span>
         <ul id="list"></ul>
-        <ul id="list">
-          <li>
-            <p>teste</p>
-            <div class="btn-tarefas">
-              <span class="btn-check" data-index="${index}">✅</span>
-              <span class="btn-edit" data-index="${index}">✏️</span>
-              <span class="btn-remover" data-index="${index}">❌</span>
-            </div>
-          </li>
-        </ul>
       </div>
     </div>
 

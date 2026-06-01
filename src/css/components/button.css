@@ -1,0 +1,30 @@
+.button {
+  border: 0.5px solid var(--color-gray2);
+  outline: none;
+  padding: 5px;
+  width: 18%;
+  background-color: var(--color-gray);
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  color: var(--color-btn);
+  font-size: 12px;
+  margin: 5px 2px;
+}
+
+.button:hover {
+  background-color: var(--color-gray2);
+  color: var(--color-gray);
+}
+
+.btn-lista {
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+  background: none;
+}
+
+.btn-lista:hover {
+  transform: scale(1.2);
+}
