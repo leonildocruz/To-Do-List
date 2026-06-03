@@ -1,13 +1,16 @@
 .lista ul li {
-  background-color: var(--color-gray2);
+  background-color: var(--color-span);
   border-radius: 5px;
   padding: 8px;
   margin-top: 5px;
+  transition: 0.3s;
 }
 
 .lista span {
   text-align: justify;
   min-width: 100%;
+  font-weight: bold;
+  font-size: 14px;
   color: var(--color-gray);
   text-transform: capitalize;
 }

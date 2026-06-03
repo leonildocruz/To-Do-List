@@ -7,8 +7,13 @@ import { renderizarNaTela } from "./modules/render.js"
 const ulList = document.getElementById("list")
 const input = document.getElementById("tarefa")
 const btnAdicionar = document.getElementById("btn-adicionar")
+const areaEditar = document.getElementById("editar-tarefa")
+const inputEditar = document.getElementById("editar")
+const btnEditar = document.getElementById("btn-editar")
+const btnCancelarEditar = document.getElementById("btn-cancelar-edit")
 
 let tarefas = buscarTarefasDoStorage()
+let indiceEmEdicao = null
 renderizarNaTela(ulList, tarefas)
 
 function adicionarTarefa() {
@@ -31,9 +36,33 @@ function atualizarAplicacao(novoArray) {
   renderizarNaTela(ulList, tarefas)
 }
 
-// Escutador do clique no botão
+// Escutador do clique no botão adicionar
 btnAdicionar.addEventListener("click", () => {
   adicionarTarefa()
+})
+
+// Escutador do clique no botão cancelar edição
+btnCancelarEditar.addEventListener("click", () => {
+  inputEditar.value = ""
+  indiceEmEdicao = null
+  input.focus()
+  areaEditar.style.display = "none"
+})
+
+// Escutador do clique no botão editar
+btnEditar.addEventListener("click", () => {
+  const textoDaEdicao = inputEditar.value.trim()
+
+  if (campoEstaVazio(textoDaEdicao)) {
+    return
+  }
+  tarefas[indiceEmEdicao].texto = textoDaEdicao
+  atualizarAplicacao(tarefas)
+
+  inputEditar.value = ""
+  indiceEmEdicao = null
+  input.focus()
+  areaEditar.style.display = "none"
 })
 
 // Escutador do Enter no teclado
@@ -49,5 +78,14 @@ ulList.addEventListener("click", (event) => {
     const indexParaRemover = Number(event.target.getAttribute("data-index"))
     const novasTarefas = removerDoArray(tarefas, indexParaRemover)
     atualizarAplicacao(novasTarefas)
+  }
+
+  // Escutador do clique no ✏️ para editar
+  if (event.target.classList.contains("btn-edit")) {
+    const indexParaEditar = Number(event.target.getAttribute("data-index"))
+    indiceEmEdicao = indexParaEditar
+    areaEditar.style.display = "block"
+    inputEditar.value = tarefas[indexParaEditar].texto
+    inputEditar.focus()
   }
 })
