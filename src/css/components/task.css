@@ -1,12 +1,18 @@
-.lista ul li {
+.ul-lista {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.li-lista {
   background-color: var(--color-span);
   border-radius: 5px;
   padding: 8px;
-  margin-top: 5px;
   transition: 0.3s;
 }
 
-.lista span {
+.li-lista span {
   text-align: justify;
   min-width: 100%;
   font-weight: bold;
@@ -15,8 +21,17 @@
   text-transform: capitalize;
 }
 
-.lista .btn-tarefas {
+.btn-tarefas {
   display: flex;
   flex-direction: row-reverse;
   gap: 5px;
+}
+
+.concluido {
+  background-color: var(--color-gray);
+}
+
+.concluido span {
+  text-decoration: line-through;
+  color: var(--color-span);
 }

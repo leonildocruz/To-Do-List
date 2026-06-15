@@ -2,7 +2,7 @@
 export function adicionarNoArray(tarefas, novoTexto) {
   const novaTarefa = {
     texto: novoTexto,
-    concluida: true,
+    concluida: false,
   }
   // Retorna um novo array contendo todos os itens antigos + o novo texto
   return [novaTarefa, ...tarefas]
