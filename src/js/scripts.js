@@ -12,6 +12,7 @@ const inputEditar = document.querySelector("#editar")
 const btnEditar = document.querySelector("#btn-editar")
 const btnCancelarEditar = document.querySelector("#btn-cancelar-edit")
 const listContainer = document.querySelector("#todo-list")
+const filtrar = document.querySelector("#filter-select")
 
 let tarefas = buscarTarefasDoStorage()
 renderizarNaTela(ulList, tarefas)
@@ -97,4 +98,15 @@ ulList.addEventListener("click", (event) => {
     tarefas[idexParaCheck].concluida = !tarefas[idexParaCheck].concluida
     atualizarAplicacao(tarefas)
   }
+})
+
+filtrar.addEventListener("change", (event) => {
+  let listaParaExibir = tarefas
+
+  if (event.target.value === "done") {
+    listaParaExibir = tarefas.filter((e) => e.concluida === true)
+  } else if (event.target.value === "todo") {
+    listaParaExibir = tarefas.filter((e) => e.concluida === false)
+  }
+  renderizarNaTela(ulList, listaParaExibir)
 })
