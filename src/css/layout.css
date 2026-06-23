@@ -42,3 +42,8 @@ body {
 .editar {
   display: none;
 }
+
+.filtro {
+  display: flex;
+  justify-content: space-between;
+}

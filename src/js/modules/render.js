@@ -5,6 +5,7 @@ export function renderizarNaTela(elementoUl, listaDeTarefas) {
   listaDeTarefas.forEach((tarefa, index) => {
     const li = document.createElement("li")
     li.classList.add("li-lista")
+
     if (tarefa.concluida) {
       li.classList.add("concluido")
     }

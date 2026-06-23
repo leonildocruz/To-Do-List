@@ -1,7 +1,7 @@
 // src/js/script.js
 import { buscarTarefasDoStorage, salvarTarefasNoStorage } from "./modules/storage.js"
 import { campoEstaVazio } from "./modules/validation.js"
-import { adicionarNoArray, removerDoArray } from "./modules/tasks.js"
+import { adicionarNoArray, removerDoArray, ordenarTarefas } from "./modules/tasks.js"
 import { renderizarNaTela } from "./modules/render.js"
 
 const ulList = document.querySelector("#list")
@@ -13,10 +13,12 @@ const btnEditar = document.querySelector("#btn-editar")
 const btnCancelarEditar = document.querySelector("#btn-cancelar-edit")
 const listContainer = document.querySelector("#todo-list")
 const filtrar = document.querySelector("#filter-select")
+const ordenar = document.querySelector("#ordenar")
 
 let tarefas = buscarTarefasDoStorage()
 renderizarNaTela(ulList, tarefas)
 let indiceEmEdicao = null
+let ordemAtual = "AZ"
 
 function adicionarTarefa() {
   const textoDaTarefa = input.value.trim()
@@ -109,4 +111,10 @@ filtrar.addEventListener("change", (event) => {
     listaParaExibir = tarefas.filter((e) => e.concluida === false)
   }
   renderizarNaTela(ulList, listaParaExibir)
+})
+
+ordenar.addEventListener("click", () => {
+  ordemAtual = ordemAtual === "AZ" ? "ZA" : "AZ"
+  tarefas = ordenarTarefas(tarefas, ordemAtual)
+  renderizarNaTela(ulList, tarefas)
 })

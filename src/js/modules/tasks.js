@@ -12,3 +12,9 @@ export function removerDoArray(tarefas, indexAlvo) {
   // Remove o item baseado no index usando filter
   return tarefas.filter((_, index) => index !== indexAlvo)
 }
+
+export function ordenarTarefas(tarefas, ordemAtual) {
+  return [...tarefas].sort((a, b) => {
+    return ordemAtual === "AZ" ? a.texto.localeCompare(b.texto) : b.texto.localeCompare(a.texto)
+  })
+}
