@@ -1,7 +1,7 @@
 // src/js/script.js
 import { buscarTarefasDoStorage, salvarTarefasNoStorage } from "./modules/storage.js"
 import { campoEstaVazio } from "./modules/validation.js"
-import { adicionarNoArray, removerDoArray, ordenarTarefas } from "./modules/tasks.js"
+import { adicionarNoArray, removerDoArray, ordenarTarefas, aplicarFiltro } from "./modules/tasks.js"
 import { renderizarNaTela } from "./modules/render.js"
 
 const ulList = document.querySelector("#list")
@@ -17,8 +17,9 @@ const ordenar = document.querySelector("#ordenar")
 
 let tarefas = buscarTarefasDoStorage()
 renderizarNaTela(ulList, tarefas)
-let indiceEmEdicao = null
+let indiceEmEdicao
 let ordemAtual = "AZ"
+let filtroAtual = "all"
 
 function adicionarTarefa() {
   const textoDaTarefa = input.value.trim()
@@ -37,7 +38,8 @@ function adicionarTarefa() {
 function atualizarAplicacao(novoArray) {
   tarefas = novoArray
   salvarTarefasNoStorage(tarefas)
-  renderizarNaTela(ulList, tarefas)
+  atualizarUI()
+  // renderizarNaTela(ulList, tarefas)
 }
 
 // Escutador do clique no botão adicionar
@@ -78,43 +80,48 @@ input.addEventListener("keydown", (event) => {
 
 // Escutador do clique no ❌ para remover
 ulList.addEventListener("click", (event) => {
+  const elementoClocado = event.target
+  if (!elementoClocado.classList.contains("btn-remover") && !elementoClocado.classList.contains("btn-edit") && !elementoClocado.classList.contains("btn-check")) {
+    return
+  }
+  const id = Number(event.target.dataset.id)
+  const indiceReal = tarefas.findIndex((tarefa) => tarefa.id === id)
+
   if (event.target.classList.contains("btn-remover")) {
-    const indexParaRemover = Number(event.target.dataset.index)
-    const novasTarefas = removerDoArray(tarefas, indexParaRemover)
+    const novasTarefas = removerDoArray(tarefas, indiceReal)
     atualizarAplicacao(novasTarefas)
   }
 
   // Escutador do clique no ✏️ para editar
   if (event.target.classList.contains("btn-edit")) {
-    const indexParaEditar = Number(event.target.dataset.index)
-    indiceEmEdicao = indexParaEditar
+    indiceEmEdicao = indiceReal
+
     areaEditar.style.display = "block"
-    inputEditar.value = tarefas[indexParaEditar].texto
+    inputEditar.value = tarefas[indiceReal].texto
     inputEditar.focus()
   }
 
   // Escutador do clique no ✅ para concluir
   if (event.target.classList.contains("btn-check")) {
-    const idexParaCheck = Number(event.target.dataset.index)
-
-    tarefas[idexParaCheck].concluida = !tarefas[idexParaCheck].concluida
+    tarefas[indiceReal].concluida = !tarefas[indiceReal].concluida
     atualizarAplicacao(tarefas)
   }
 })
-
-filtrar.addEventListener("change", (event) => {
-  let listaParaExibir = tarefas
-
-  if (event.target.value === "done") {
-    listaParaExibir = tarefas.filter((e) => e.concluida === true)
-  } else if (event.target.value === "todo") {
-    listaParaExibir = tarefas.filter((e) => e.concluida === false)
-  }
-  renderizarNaTela(ulList, listaParaExibir)
-})
-
 ordenar.addEventListener("click", () => {
   ordemAtual = ordemAtual === "AZ" ? "ZA" : "AZ"
-  tarefas = ordenarTarefas(tarefas, ordemAtual)
-  renderizarNaTela(ulList, tarefas)
+  atualizarUI()
+})
+
+function atualizarUI() {
+  let lista = tarefas
+
+  lista = aplicarFiltro(lista, filtroAtual)
+  lista = ordenarTarefas(lista, ordemAtual)
+
+  renderizarNaTela(ulList, lista)
+}
+
+filtrar.addEventListener("change", (event) => {
+  filtroAtual = event.target.value
+  atualizarUI()
 })

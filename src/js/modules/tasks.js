@@ -1,6 +1,7 @@
 // src/js/modules/tasks.js
 export function adicionarNoArray(tarefas, novoTexto) {
   const novaTarefa = {
+    id: Date.now(),
     texto: novoTexto,
     concluida: false,
   }
@@ -17,4 +18,13 @@ export function ordenarTarefas(tarefas, ordemAtual) {
   return [...tarefas].sort((a, b) => {
     return ordemAtual === "AZ" ? a.texto.localeCompare(b.texto) : b.texto.localeCompare(a.texto)
   })
+}
+
+export function aplicarFiltro(tarefas, filtroAtual) {
+  if (filtroAtual === "done") {
+    return tarefas.filter((e) => e.concluida === true)
+  } else if (filtroAtual === "todo") {
+    return tarefas.filter((e) => e.concluida === false)
+  }
+  return tarefas
 }

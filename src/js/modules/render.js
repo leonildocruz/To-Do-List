@@ -2,7 +2,7 @@
 export function renderizarNaTela(elementoUl, listaDeTarefas) {
   elementoUl.innerHTML = "" // Limpa a tela antes de redesenhar
 
-  listaDeTarefas.forEach((tarefa, index) => {
+  listaDeTarefas.forEach((tarefa) => {
     const li = document.createElement("li")
     li.classList.add("li-lista")
 
@@ -14,9 +14,9 @@ export function renderizarNaTela(elementoUl, listaDeTarefas) {
     li.innerHTML = `
             <span>${tarefa.texto}</span>
             <div class="btn-tarefas">
-              <button class="btn-check btn-lista" data-index="${index}">✅</button>
-              <button class="btn-edit btn-lista" data-index="${index}">✏️</button>
-              <button class="btn-remover btn-lista" data-index="${index}">❌</button>
+              <button class="btn-check btn-lista" data-id="${tarefa.id}">✅</button>
+              <button class="btn-edit btn-lista" data-id="${tarefa.id}">✏️</button>
+              <button class="btn-remover btn-lista" data-id="${tarefa.id}">❌</button>
             </div>
         `
 
