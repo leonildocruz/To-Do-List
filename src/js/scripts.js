@@ -1,7 +1,7 @@
 // src/js/script.js
 import { buscarTarefasDoStorage, salvarTarefasNoStorage } from "./modules/storage.js"
 import { campoEstaVazio } from "./modules/validation.js"
-import { adicionarNoArray, removerDoArray, ordenarTarefas, aplicarFiltro } from "./modules/tasks.js"
+import { adicionarNoArray, removerDoArray, ordenarTarefas, aplicarFiltro, pesquisarTarefas } from "./modules/tasks.js"
 import { renderizarNaTela } from "./modules/render.js"
 
 const ulList = document.querySelector("#list")
@@ -14,12 +14,14 @@ const btnCancelarEditar = document.querySelector("#btn-cancelar-edit")
 const listContainer = document.querySelector("#todo-list")
 const filtrar = document.querySelector("#filter-select")
 const ordenar = document.querySelector("#ordenar")
+const pesquisar = document.querySelector("#pesquisar")
 
 let tarefas = buscarTarefasDoStorage()
 renderizarNaTela(ulList, tarefas)
 let indiceEmEdicao
 let ordemAtual = "AZ"
 let filtroAtual = "all"
+let textoPesquisa = ""
 
 function adicionarTarefa() {
   const textoDaTarefa = input.value.trim()
@@ -116,6 +118,7 @@ function atualizarUI() {
   let lista = tarefas
 
   lista = aplicarFiltro(lista, filtroAtual)
+  lista = pesquisarTarefas(lista, textoPesquisa)
   lista = ordenarTarefas(lista, ordemAtual)
 
   renderizarNaTela(ulList, lista)
@@ -123,5 +126,11 @@ function atualizarUI() {
 
 filtrar.addEventListener("change", (event) => {
   filtroAtual = event.target.value
+  atualizarUI()
+})
+
+pesquisar.addEventListener("input", (event) => {
+  textoPesquisa = event.target.value
+  console.log(event)
   atualizarUI()
 })

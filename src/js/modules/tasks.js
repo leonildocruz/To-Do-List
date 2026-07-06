@@ -28,3 +28,12 @@ export function aplicarFiltro(tarefas, filtroAtual) {
   }
   return tarefas
 }
+
+export function pesquisarTarefas(tarefas, textoPesquisa) {
+  const textoMinusculo = textoPesquisa.toLowerCase()
+
+  return tarefas.filter((tarefa) => {
+    const tarefaMinuscula = tarefa.texto.toLowerCase()
+    return tarefaMinuscula.includes(textoMinusculo)
+  })
+}
